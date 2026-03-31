@@ -13,11 +13,11 @@ const criarListaNumeros = function(quantidade){
 //Função para listar numeros pares
 const criarListaPares = function(numero){
     let listaPar = []
-    let valor = 0 
+    let valor = 2 
 
-    for(let i = 2; i <= numero; i++){
-        valor = valor + 2   
+    for(let i = 1; i <= numero; i++){
         listaPar.push(valor)
+        valor = valor + 2   
     }
     return listaPar
 
@@ -26,9 +26,11 @@ const criarListaPares = function(numero){
 //Função para listar numeros impares
 const criarListaImpares = function(numero){
     let listaImpar = []
+    let valor = 1
 
-    for(let i = 1; i <= numero; i+=2){   
-        listaImpar.push(i)
+    for(let i = 1; i <= numero; i++){ 
+        listaImpar.push(valor)
+        valor = valor + 2 
     }
     return listaImpar
 
@@ -83,17 +85,21 @@ const criarLinha = function(numero, par, impar, multi5, pot2){
 }
 
 const handleClick = function(){
-    const quantidade = Number(document.getElementById("quantidade").value)
 
+    //Chama o id da tabela e utiliza o inner para limpar de uma só vez
+    let tabela = document.getElementById("tabela")
+    tabela.innerHTML = ''
+
+    const quantidade = Number(document.getElementById("quantidade").value)
+    
     const listaNumeros = criarListaNumeros(quantidade)
     const listaPar = criarListaPares(quantidade)
     const listaImpar = criarListaImpares(quantidade)
     const listaMulti5 = criarListaMulti5(quantidade)
     const listaPot2 = criarListaPotencia2(quantidade)
-
+    
     for(let i = 0; i < quantidade; i++){
         criarLinha(listaNumeros[i], listaPar[i], listaImpar[i], listaMulti5[i], listaPot2[i])
     }
-
-
+    
 }
